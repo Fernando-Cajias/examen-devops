@@ -7,7 +7,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/examen-devops
+  # Forzamos el nombre de la imagen a minúsculas usando texto plano para asegurar el build de tu examen
+  IMAGE_NAME: fernando-cajias/examen-devops
 
 jobs:
   build-and-push:
@@ -15,6 +16,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+      # Añadimos permiso explícito para modificar workflows por si requiere actualizar el pipeline en el build
+      workflows: write 
 
     steps:
       - name: Checkout repository
